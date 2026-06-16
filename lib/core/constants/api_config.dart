@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 /// API configuration for InvestPro.
 ///
 /// The app uses a local Python proxy server (server/realtime_server.py)
@@ -12,8 +14,30 @@
 class ApiConfig {
   ApiConfig._();
 
+  /// Override host for the proxy server.
+  ///
+  /// Set this before accessing [baseUrl] to use a custom IP/host.
+  /// Useful for physical Android devices on the same network.
+  ///
+  /// Example: ApiConfig.baseHostOverride = '192.168.1.100';
+  static String? baseHostOverride;
+
+  /// The host address for the local proxy server.
+  ///
+  /// Detection order:
+  ///   1. [baseHostOverride] (user-set, e.g. host machine's LAN IP)
+  ///   2. `10.0.2.2` when running on Android emulator
+  ///   3. `localhost` for desktop/iOS simulator/web
+  static String get _host {
+    if (baseHostOverride != null) return baseHostOverride!;
+    try {
+      if (Platform.isAndroid) return '10.0.2.2';
+    } catch (_) {}
+    return 'localhost';
+  }
+
   /// Base URL for the InvestPro local proxy server.
-  static const String baseUrl = 'http://localhost:5000/api';
+  static String get baseUrl => 'http://$_host:5000/api';
 
   /// Timeout for real-time data requests (seconds).
   static const int apiTimeoutSeconds = 15;
