@@ -8,9 +8,9 @@ import 'core/constants/api_config.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Use host machine's LAN IP so the Android device can reach the proxy.
-  // Change this to your PC's actual LAN IP when on a different network.
-  ApiConfig.baseHostOverride = '10.34.101.100';
+  // Use host machine's LAN IP only for mobile devices needing remote proxy access.
+  // On web, localhost is used directly.
+  // ApiConfig.baseHostOverride = '10.135.80.100';
 
   // Initialize Firebase (gracefully skips if running with placeholder config)
   try {

@@ -654,20 +654,20 @@ async def default_quotes():
 
 if __name__ == "__main__":
     print("""
-╔══════════════════════════════════════════════════════════╗
-║            InvestPro Real-Time Data Server v2            ║
-║                                                         ║
-║  Endpoints:                                             ║
-║    /api/health          → Health + cache stats          ║
-║    /api/quote/{symbol}  → Single stock quote            ║
-║    /api/quotes          → Multiple stock quotes (POST)  ║
-║    /api/history/{sym}   → Historical OHLCV data         ║
-║    /api/search?q=       → Stock search                  ║
-║    /api/news            → Market news (RSS + fallback)  ║
-║    /api/market-overview → Nifty 50, Sensex, Bank Nifty  ║
-║    /api/default-quotes  → 15 predefined Indian stocks   ║
-║                                                         ║
-║  Running on http://localhost:5000                       ║
-╚══════════════════════════════════════════════════════════╝
++----------------------------------------------------------+
+|            InvestPro Real-Time Data Server v2            |
+|                                                          |
+|  Endpoints:                                              |
+|    /api/health          -> Health + cache stats          |
+|    /api/quote/{symbol}  -> Single stock quote            |
+|    /api/quotes          -> Multiple stock quotes (POST)  |
+|    /api/history/{sym}   -> Historical OHLCV data         |
+|    /api/search?q=       -> Stock search                  |
+|    /api/news            -> Market news (RSS + fallback)  |
+|    /api/market-overview -> Nifty 50, Sensex, Bank Nifty  |
+|    /api/default-quotes  -> 15 predefined Indian stocks    |
+|                                                          |
+|  Running on http://localhost:5000                        |
++----------------------------------------------------------+
 """)
     uvicorn.run(app, host="0.0.0.0", port=5000, log_level="info")
